@@ -1,0 +1,23 @@
+SELECT * FROM dbo.[Surgery Dataset] 
+
+SELECT [Operative_Procedure],[Facility_Name],[Met_2020_Goal] FROM dbo.[Surgery Dataset]
+	WHERE [Met_2020_Goal] = 'Yes' 
+
+SELECT [Facility_Name], COUNT([Met_2020_Goal]) AS 'Number of SIRs Met 2020' FROM dbo.[Surgery Dataset]
+	WHERE [Met_2020_Goal] = 'Yes' 
+	GROUP BY [Facility_Name] 
+	ORDER BY COUNT([Met_2020_Goal]) DESC; 
+
+SELECT [Facility_Name], [Infections_Predicted], COUNT([Met_2020_Goal]) AS 'Number of SIRs Met 2020' FROM dbo.[Surgery Dataset]
+	WHERE [Met_2020_Goal] = 'Yes' 
+	GROUP BY [Facility_Name], [Infections_Predicted] 
+	ORDER BY COUNT([Met_2020_Goal]) DESC; 
+	
+SELECT NULLIF([SIR], '') FROM dbo.[Surgery Dataset] 
+
+SELECT [Operative_Procedure], [Facility_Name], [Procedure_Count], [Infections_Predicted] FROM dbo.[Surgery Dataset]
+	WHERE [Procedure_Count] < 100 AND [Procedure_Count] > 25
+	ORDER BY [Procedure_Count] DESC; 
+
+SELECT [Operative_Procedure], [Facility_Name], [Procedure_Count]FROM dbo.[Surgery Dataset]
+	ORDER BY [Procedure_Count] DESC;
